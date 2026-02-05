@@ -15,35 +15,57 @@
 #include <time.h>
 
 
-void randomArray(int arr[], int size, int min, int max) {
-    srand(time(NULL));
-    for (int i = 0; i < size; i++) {
+void taoMangNgauNhien(int arr[], int n, int min, int max) {
+    for (int i = 0; i < n; i++) {
         arr[i] = rand() % (max - min + 1) + min;
     }
 }
 
 
-void printArray(int arr[], int size) {
-    printf("Các phần tử của mảng là:\n");
-    for (int i = 0; i < size; i++) {
+void xuatMang(int arr[], int n) {
+    printf("Mang vua tao la: ");
+    for (int i = 0; i < n; i++) {
         printf("%d ", arr[i]);
     }
     printf("\n");
 }
 
 
+void tinhTrungBinhChiaHetCho3(int arr[], int n) {
+    int tong = 0;
+    int dem = 0;
+
+    for (int i = 0; i < n; i++) {
+        if (arr[i] % 3 == 0) {
+            tong += arr[i];
+            dem++;
+        }
+    }
+
+    if (dem > 0) {
+        float trungBinh = (float)tong / dem;
+        printf("=> Trung binh tong cac so chia het cho 3 la: %.2f\n", trungBinh);
+    } else {
+        printf("=> Khong co so nao chia het cho 3 trong mang.\n");
+    }
+}
+
 int main() {
     int n;
     
-    printf("Nhập số lượng phần tử của mảng: ");
+  
+    srand(time(NULL));
+
+    printf("Nhap so luong phan tu n: ");
     scanf("%d", &n);
-    
-    int arr[10];
-
-    randomArray(arr, n, 1, 100);
-    printArray(arr, n);
 
     
+    int arr[n];
+
+    
+    taoMangNgauNhien(arr, n, 1, 100);
+    xuatMang(arr, n);
+    tinhTrungBinhChiaHetCho3(arr, n);
+
     return 0;
 }
-
